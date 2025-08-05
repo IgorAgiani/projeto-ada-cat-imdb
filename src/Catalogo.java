@@ -106,7 +106,7 @@ public class Catalogo {
         }
         System.out.println("\nLista de Filmes");
         for (int i = 0; i < filmes.size(); i++){
-            System.out.println((i + 1)+ " - " + filmes.get(i).getTitulo());
+            System.out.println(i + " - " + filmes.get(i).getTitulo());
         }
     }
 
