@@ -137,36 +137,3 @@ public class Catalogo {
     }
 
 }
-
-
-
-//Conceitos de POO utilizados:
-//1. **Encapsulamento:**
-//    - Atributos privados (`private final List<>`)
-//    - Métodos públicos para acesso controlado aos dados
-//    - Método auxiliar privado `exibirDetalhesFilme`
-//
-//2. **Polimorfismo:**
-//    - Uso do método `exibirDetalhes()` que é sobrescrito nas classes e `Ator``Diretor`
-//    - Chamadas polimórficas em e `listarAtores()` `listarDiretores()`
-//
-//3. **Abstração:**
-//    - A classe abstrai a complexidade de gerenciamento das coleções `Catalogo`
-//    - Métodos com responsabilidades bem definidas
-//    - Interface clara para operações do catálogo
-//
-//4. **Composição:**
-//    - mantém listas de , e `Catalogo``Filme``Diretor``Ator`
-//    - possui referências para e lista de `Filme``Diretor``Ator`
-//
-//5. **Princípios SOLID:**
-//    - Single Responsibility: cada método tem uma única responsabilidade
-//    - Open/Closed: fácil extensão para novos tipos de busca ou listagem
-//
-//6. **Tratamento de Erros:**
-//    - Validações de entrada em todos os métodos
-//    - Mensagens informativas para o usuário
-//
-//7. **Reuso de Código:**
-//    - Método `exibirDetalhesFilme` centraliza a exibição de informações do filme
-//    - Verificações de lista vazia reutilizadas em diferentes métodos
