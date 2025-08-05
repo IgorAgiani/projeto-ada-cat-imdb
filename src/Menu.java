@@ -1,5 +1,7 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public class Menu {
     public static void main(String[] args) {
@@ -33,13 +35,14 @@ public class Menu {
                     String nomeDiretor = scanner.nextLine();
                     Diretor novoDiretor = new Diretor(nomeDiretor);
                     diretores.add(novoDiretor);
+                    catalogo.adicionarDiretor(novoDiretor);
                     break;
                 case 2:
                     System.out.println("----Cadastrar Ator----");
                     System.out.println("Nome do Ator");
                     String nomeAtor = scanner.nextLine();
                     Ator novoAtor = new Ator(nomeAtor);
-                    atores.add(novoAtor);
+                    catalogo.adicionarAtor(novoAtor);
                     break;
                 case 3:
                     System.out.println("----Cadastrar Filme----");
@@ -51,27 +54,35 @@ public class Menu {
                     System.out.println("Descrição:");
                     String descricao = scanner.nextLine();
                     System.out.println("Escolha o diretor pelo índice:");
-                    for (int i = 0, i<diretores.size(), i++){
-                    System.out.println(i + "- " + diretores.get(i).getnome());
-                }
-                int indice = scanner.nextInt();
-                scanner.nextLine();
-                Diretor diretorEscolhido = diretores.get(indice);
+                    catalogo.listarDiretores();
+                    int indice = scanner.nextInt();
+                    scanner.nextLine();
 
-                Filme novoFilme = new Filme(tituloFilme, dataLancamento, descricao, diretorEscolhido);
+                    Diretor diretorEscolhido = catalogo.buscarDiretorPorIndice(indice);
+                    if (diretorEscolhido != null) {
+                        Filme novoFilme = new Filme(tituloFilme, dataLancamento, descricao, diretorEscolhido);
+                        catalogo.adicionarFilme(novoFilme);
+
+                    }
                 break;
                 case 4:
                     System.out.println("----Buscar Filme pelo nome----");
                     System.out.println("Digite nome do filme: ");
                     String buscarFilme= scanner.nextLine();
-                    for(Filme f: filmes){
-                        if(f.getNome().equalsIgnoreCase(buscarFilme)){
-                            return f;
-                        }
-                }
+                    catalogo.buscarFilmePorNome(buscarFilme);
                     break;
+
+                case 5:
+                    System.out.println("----Lista de Filmes----");
+                    catalogo.listarFilmes();
+                    break;
+
+                case 6:
+                    System.out.println("Saindo do sistema...");
+                    System.exit(0);
+
                 default:
-                    System.out.printf("");
+                    System.out.println("Opção inválida");
                     break;
             }
         }
