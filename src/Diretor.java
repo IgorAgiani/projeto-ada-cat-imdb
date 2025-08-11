@@ -1,18 +1,14 @@
 // classe Diretor herda os atibutos da classe Pessoa
-public class Diretor extends Pessoa{
+public class Diretor extends Pessoa {
     private double avaliacao;
-
-    public double getAvaliacao() {
-        return avaliacao;
-    }
-
-    public void setAvaliacao(double avaliacao) {
-        this.avaliacao = avaliacao;
-    }
 
     public Diretor(String nome, String miniBiografia, double avaliacao) {
         super(nome, miniBiografia);
         this.avaliacao = avaliacao;
+    }
+
+    public double getAvaliacao() {
+        return avaliacao;
     }
 
     @Override
