@@ -1,26 +1,19 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Comparator;
-import java.util.stream.Collectors;
-
-import static javax.swing.UIManager.get;
 
 public class Catalogo {
     private final List<Filme> filmes;
     private final List<Diretor> diretores;
     private final List<Ator> atores;
 
-
-    //Construtor
-    public Catalogo(){
+    public Catalogo() {
         this.filmes = new ArrayList<>();
         this.diretores = new ArrayList<>();
         this.atores = new ArrayList<>();
     }
 
-    //Método para diretores
-    public void adicionarDiretor(Diretor diretor){
-        if (diretor != null){
+    public void adicionarDiretor(Diretor diretor) {
+        if (diretor != null) {
             diretores.add(diretor);
             System.out.println("Diretor adicionado com sucesso");
         } else {
@@ -28,8 +21,8 @@ public class Catalogo {
         }
     }
 
-    public void listarDiretores(){
-        if (diretores.isEmpty()){
+    public void listarDiretores() {
+        if (diretores.isEmpty()) {
             System.out.println("Não há diretores cadastrados");
             return;
         }
@@ -40,17 +33,34 @@ public class Catalogo {
         }
     }
 
-    public Diretor buscarDiretorPorIndice(int indice){
-        if (indice >= 0 && indice < diretores.size()){
+    public Diretor buscarDiretorPorIndice(int indice) {
+        if (indice >= 0 && indice < diretores.size()) {
             return diretores.get(indice);
         }
         System.out.println("Erro: Indice inválido");
         return null;
     }
 
-    //Método para Atores
-    public void adicionarAtor(Ator ator){
-        if (ator != null){
+    public void buscarDiretorPorNome(String nome) {
+        if (nome == null || nome.isEmpty()) {
+            System.out.println("Erro: Nome do Diretor inválido");
+            return;
+        }
+        boolean diretorEncontrado = false;
+        for (Diretor diretor : diretores) {
+            if (diretor.getNome().equalsIgnoreCase(nome)) {
+                diretor.exibirDetalhes();
+                diretorEncontrado = true;
+                break;
+            }
+        }
+        if (!diretorEncontrado) {
+            System.out.println("Diretor não encontrado!");
+        }
+    }
+
+    public void adicionarAtor(Ator ator) {
+        if (ator != null) {
             atores.add(ator);
             System.out.println("Ator adicionado com sucesso!");
         } else {
@@ -58,8 +68,7 @@ public class Catalogo {
         }
     }
 
-
-    public void listarAtores(){
+    public void listarAtores() {
         if (atores.isEmpty()) {
             System.out.println("Não há atores cadastrados");
             return;
@@ -70,48 +79,45 @@ public class Catalogo {
         }
     }
 
-    //Métodos para Filmes
-    public void adicionarFilme(Filme filme){
-        if (filme != null){
+    public void adicionarFilme(Filme filme) {
+        if (filme != null) {
             filmes.add(filme);
             System.out.println("Filme adicionado com sucesso!");
-        }else{
+        } else {
             System.out.println("Erro: Filme inválido!");
         }
     }
 
-    public void buscarFilmePorNome(String nome){
-        if (nome == null || nome.isEmpty()){
+    public void buscarFilmePorNome(String nome) {
+        if (nome == null || nome.isEmpty()) {
             System.out.println("Erro: Nome do filme inválido");
             return;
         }
 
         boolean encontrado = false;
-        for (Filme filme : filmes){
-            if (filme.getTitulo().equalsIgnoreCase(nome.trim())){
+        for (Filme filme : filmes) {
+            if (filme.getTitulo().equalsIgnoreCase(nome.trim())) {
                 exibirDetalhesFilme(filme);
                 encontrado = true;
                 break;
             }
         }
-        if (!encontrado){
+        if (!encontrado) {
             System.out.println("Filme não encontrado!");
         }
     }
 
-    public void listarFilmes(){
-        if (filmes.isEmpty()){
+    public void listarFilmes() {
+        if (filmes.isEmpty()) {
             System.out.println("Não há filmes cadastrados!");
             return;
         }
-        System.out.println("\nLista de Filmes");
-        for (int i = 0; i < filmes.size(); i++){
+        for (int i = 0; i < filmes.size(); i++) {
             System.out.println(i + " - " + filmes.get(i).getTitulo());
         }
     }
 
-    //Método auxiliar privado
-    private void exibirDetalhesFilme(Filme filme){
+    private void exibirDetalhesFilme(Filme filme) {
         System.out.println("----------------------------------------");
         System.out.println("Título: " + filme.getTitulo());
         System.out.println("Data de Lançamento: " + filme.getDataLancamento());
@@ -119,21 +125,64 @@ public class Catalogo {
         System.out.println("Diretor: " + filme.getDiretor().getNome());
         System.out.println("Descrição: " + filme.getDescricao());
         System.out.println("Atores:");
-        for (Ator ator : filme.getAtores()){
+        for (Ator ator : filme.getAtores()) {
             System.out.println("- " + ator.getNome());
         }
-        System.out.println("----------------------------------------");
     }
 
-    //Métodos auxiliares para o menu
-    public List<Diretor> getDiretores(){
+    public List<Diretor> getDiretores() {
         return diretores;
     }
-    public List<Ator> getAtores(){
+
+    public List<Ator> getAtores() {
         return atores;
     }
-    public List<Filme> getFilmes(){
+
+    public List<Filme> getFilmes() {
         return filmes;
     }
 
+    public void removerFilme(int indice) {
+        if (indice >= 0 && indice < filmes.size()) {
+            filmes.remove(indice);
+            System.out.println("Filme removido");
+        } else {
+            System.out.println("Índice inválido");
+        }
+    }
+
+    public void removerDiretor(int indice) {
+        if(indice>=0 && indice<diretores.size()){
+            diretores.remove(indice);
+            System.out.println("Diretor removido");
+        }else
+            System.out.println("índice inválido");
+    }
+
+    public void removerAtor(int indice) {
+        if(indice>=0 && indice<atores.size()){
+            atores.remove(indice);
+            System.out.println("Ator removido");
+        }else
+            System.out.println("índice inválido");
+    }
+
+    public void buscarAtorPorNome(String buscarAtor) {
+        if (buscarAtor == null || buscarAtor.isEmpty()) {
+            System.out.println("Erro: Nome do Ator inválido");
+            return;
+        }
+
+        boolean encontrado = false;
+        for (Ator ator : atores) {
+            if (ator.getNome().equalsIgnoreCase(buscarAtor)) {
+                ator.exibirDetalhes();
+                encontrado = true;
+                break;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("Ator não encontrado!");
+        }
+    }
 }
