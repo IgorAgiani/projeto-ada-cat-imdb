@@ -165,10 +165,9 @@ public class Menu {
         System.out.println("----Cadastrar Filme----");
         System.out.print("Digite nome do Filme: ");
         String tituloFilme = scanner.nextLine();
-        System.out.print("Data de Lançamento no formato: DD/MM/AAAA: ");
+        System.out.print("Data de Lançamento no formato: AAAA-MM-DD: ");
         String data = scanner.nextLine();
         LocalDate dataLancamento = LocalDate.parse(data);
-        System.out.println(dataLancamento);
         System.out.print("Orçamento: ");
         double orcamento = scanner.nextDouble();
         scanner.nextLine();
